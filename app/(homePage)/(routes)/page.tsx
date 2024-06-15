@@ -1,5 +1,6 @@
 import FormInput from "@/components/shared/textfiled";
 import Image from "next/image";
+import { PlayList } from "../_components/playList/playList";
 
 export default function Home() {
   return (
@@ -8,7 +9,7 @@ export default function Home() {
       <div className="">kjcvb</div>
       {/* play list section  */}
       <div className="row-span-2  md:col-span-2">
-        
+        <PlayList />
       </div>
     </main>
   );
