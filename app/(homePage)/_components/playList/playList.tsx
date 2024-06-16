@@ -13,7 +13,6 @@ export const PlayList = () => {
   dispatch(initialize(data?.data));
   return (
     <div className="h-full pl-20 overflow-y-auto">
-      <button onClick={() => dispatch(search("happy"))}>hi</button>
       {/* <FormInput value="text" className="mb-3 sticky top-0" name="Seacrh" /> */}
       {songItems?.map((song) => (
         <MusicItem
