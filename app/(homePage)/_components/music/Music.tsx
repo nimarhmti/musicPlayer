@@ -4,7 +4,7 @@ import { isEmptyObject } from "@/utils/objectCheker";
 import Image from "next/image";
 import React from "react";
 export const Music = () => {
-  const currentSong = useAppSelector((state) => state.currentSong.value);
+  const currentSong = useAppSelector((state) => state.songsItems.currentSong);
   if (isEmptyObject(currentSong))
     return (
       <h3 className="text-mainText font-bold">

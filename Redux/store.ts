@@ -1,12 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { musicsApi } from "@/services/music/musicApiSlice";
 import songsReducer from "./slicers/songs/songsSlicer";
-import currentSong from "./slicers/songs/curentSongSlicer";
 export const makeStore = () => {
   return configureStore({
     reducer: {
       songsItems: songsReducer,
-      currentSong: currentSong,
       [musicsApi.reducerPath]: musicsApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>

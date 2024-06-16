@@ -1,14 +1,19 @@
 "use client";
 import { useAppDispatch } from "@/Redux/hooks";
-import { search } from "@/Redux/slicers/songs/songsSlicer";
+import { updateSongsList } from "@/Redux/slicers/songs/songsSlicer";
 import FormInput from "@/components/shared/textfiled";
+import { songsModel } from "@/types/dataType";
+import { filterList } from "@/utils/filterItems";
 import React, { FormEvent } from "react";
-
-export const SearchForm = () => {
+interface Props {
+  songsList: songsModel[] | any;
+}
+export const SearchForm = ({ songsList }: Props) => {
   const dispatch = useAppDispatch();
   const onChangeHandler = (e: FormEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget;
-    dispatch(search(value));
+    const filteredList = filterList(songsList, value);
+    dispatch(updateSongsList(filteredList));
   };
   return (
     <form className=" mb-2">

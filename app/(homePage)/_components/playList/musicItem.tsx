@@ -1,8 +1,7 @@
 import { useAppDispatch, useAppSelector } from "@/Redux/hooks";
-import { addCurrentSong } from "@/Redux/slicers/songs/curentSongSlicer";
+import { addCurrentSong } from "@/Redux/slicers/songs/songsSlicer";
 import { BaseIcon } from "@/components/shared/Icons/BaseIcon";
 import { songsModel } from "@/types/dataType";
-import { isEmptyObject } from "@/utils/objectCheker";
 import React from "react";
 interface Props extends songsModel {}
 export const MusicItem = ({
@@ -13,7 +12,7 @@ export const MusicItem = ({
   time,
   image,
 }: Props) => {
-  const currentSong = useAppSelector((state) => state.currentSong.value);
+  const currentSong = useAppSelector((state) => state.songsItems.currentSong);
   const dispatch = useAppDispatch();
 
   const chooseCurrentSong = () => {

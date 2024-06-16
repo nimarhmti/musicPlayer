@@ -1,20 +1,22 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { MusicItem } from "./musicItem";
 import FormInput from "@/components/shared/textfiled";
 import { useGetMusicsQuery } from "@/services/music/musicApiSlice";
 import { useAppDispatch, useAppSelector } from "@/Redux/hooks";
-import { initialize, search } from "@/Redux/slicers/songs/songsSlicer";
+import { initialize } from "@/Redux/slicers/songs/songsSlicer";
 import { SearchForm } from "../form/searchForm";
 export const PlayList = () => {
   const { data, isLoading } = useGetMusicsQuery();
-  const songItems = useAppSelector((state) => state.songsItems.value);
+  const songItems = useAppSelector((state) => state.songsItems.songList);
   const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(initialize(data?.data));
+  }, [data]);
   if (isLoading) return <p>is loading....</p>;
-  dispatch(initialize(data?.data));
   return (
     <div className="h-full pl-20 overflow-y-auto">
-      <SearchForm />
+      <SearchForm songsList={data?.data} />
       {songItems?.map((song) => (
         <MusicItem
           albumName={song.albumName}
