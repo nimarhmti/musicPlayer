@@ -1,9 +1,6 @@
-import FormInput from "@/components/shared/textfiled";
-import Image from "next/image";
 import { PlayList } from "../_components/playList/playList";
 import { Music } from "../_components/music/Music";
-import { songsModel } from "@/types/dataType";
-import { useGetMusicsQuery } from "@/services/music/musicApiSlice";
+import { SearchForm } from "../_components/form/searchForm";
 
 export default function Home() {
   return (
@@ -14,6 +11,7 @@ export default function Home() {
       </div>
       {/* play list section  */}
       <div className="row-span-2 md:col-span-2">
+     
         <PlayList />
       </div>
     </main>

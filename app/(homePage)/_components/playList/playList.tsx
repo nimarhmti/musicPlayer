@@ -5,6 +5,7 @@ import FormInput from "@/components/shared/textfiled";
 import { useGetMusicsQuery } from "@/services/music/musicApiSlice";
 import { useAppDispatch, useAppSelector } from "@/Redux/hooks";
 import { initialize, search } from "@/Redux/slicers/songs/songsSlicer";
+import { SearchForm } from "../form/searchForm";
 export const PlayList = () => {
   const { data, isLoading } = useGetMusicsQuery();
   const songItems = useAppSelector((state) => state.songsItems.value);
@@ -13,7 +14,7 @@ export const PlayList = () => {
   dispatch(initialize(data?.data));
   return (
     <div className="h-full pl-20 overflow-y-auto">
-      {/* <FormInput value="text" className="mb-3 sticky top-0" name="Seacrh" /> */}
+      <SearchForm />
       {songItems?.map((song) => (
         <MusicItem
           albumName={song.albumName}

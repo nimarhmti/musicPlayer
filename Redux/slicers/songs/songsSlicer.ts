@@ -16,11 +16,16 @@ export const songsSlice = createSlice({
     initialize: (state, actions: PayloadAction<songsModel[] | any>) => {
       state.value = actions.payload;
     },
+
     search: (state, actions: PayloadAction<string>) => {
       const filteredSongsList = state.value.filter((song) => {
-        const query = song.albumName + song.singer + song.songName;
-        return query.includes(actions.payload);
+        const query = (song.albumName + song.singer + song.songName)
+          .trim()
+          .toLocaleLowerCase();
+
+        return query.includes(actions.payload.toLocaleLowerCase());
       });
+      console.log("flag");
       state.value = filteredSongsList;
     },
   },
