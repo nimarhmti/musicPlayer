@@ -5,5 +5,5 @@ export const filterList = (list: songsModel[], actions: string) =>
     const query = (song?.albumName + song?.singer + song?.songName)
       .trim()
       .toLocaleLowerCase();
-    return query.includes(actions.toLocaleLowerCase());
+    return query.includes(actions.trim().toLocaleLowerCase());
   });
