@@ -1,21 +1,29 @@
-import { songsModel } from "@/types/dataType";
+"use client";
+import { useAppSelector } from "@/Redux/hooks";
+import { isEmptyObject } from "@/utils/objectCheker";
 import Image from "next/image";
 import React from "react";
-interface Props extends Omit<songsModel, "time" | "id"> {}
-export const Music = ({ singer, albumName, image, songName }: Props) => {
+export const Music = () => {
+  const currentSong = useAppSelector((state) => state.currentSong.value);
+  if (isEmptyObject(currentSong))
+    return (
+      <h3 className="text-mainText font-bold">
+        lets choose a Song to show details!
+      </h3>
+    );
   return (
     <div className="h-full space-y-2">
       <Image
-        src={image}
+        src={currentSong.image}
         height={200}
         width={200}
         alt="artist-photo"
         className="rounded-md shadow-md"
       />
       <div>
-        <h4 className="font-bold">{songName}</h4>
+        <h4 className="font-bold">{currentSong.songName}</h4>
         <p className="text-sm text-caption">
-          by ${singer} ,album {albumName}
+          by {currentSong.singer} ,album {currentSong.albumName}
         </p>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga ullam
